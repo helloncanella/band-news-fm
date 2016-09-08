@@ -1,0 +1,17 @@
+{
+  "name": "band-news-fm",
+  "description": "React Webpack Babel Starter Kit",
+  "main": "=",
+  "authors": [
+    "Ali Al Dallal"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/helloncanella/band-news-fm",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
