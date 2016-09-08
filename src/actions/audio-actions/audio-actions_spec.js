@@ -1,0 +1,69 @@
+import {expect} from 'chai'
+
+import {
+    PLAY_PODCAST,
+    PAUSE_PODCAST,
+    SET_AUDIO_IS_READY,
+    ANOUNCE_ERROR_IN_AUDIO_DOWNLOAD,
+    CHANGE_TIME_TRACK
+} from '../../constants/action-types'
+
+import {
+    playAudio,
+    pauseAudio,
+    audioError,
+    setAudioIsReady,
+    changeTimeTrack
+} from './audio-actions'
+
+
+describe('Audio Actions', () => {
+
+    describe('playAudio', () => {
+        it('return type PLAY_PODCAST', function () {
+            expect(playAudio()).to.deep.equal({
+                type: PLAY_PODCAST
+            })
+        });
+
+    })
+
+    describe('pauseAudio', () => {
+        it('return type PAUSE_PODCAST', function () {
+            expect(pauseAudio()).to.deep.equal({
+                type: PAUSE_PODCAST
+            })
+        });
+    })
+
+    describe('audioError', () => {
+        let error = 'errorInformation'
+
+        it('return type ANOUNCE_ERROR_IN_AUDIO_DOWNLOAD with respective error', function () {
+            expect(audioError(error)).to.deep.equal({
+                type: ANOUNCE_ERROR_IN_AUDIO_DOWNLOAD,
+                error
+            })
+        });
+    })
+
+    describe('setAudioIsReady', () => {
+        it('return type SET_AUDIO_IS_READY', function () {
+            expect(setAudioIsReady()).to.deep.equal({
+                type: SET_AUDIO_IS_READY,
+            })
+        });
+    })
+
+    describe('changeTimeTrack', () => {
+        let currentTime = 235465
+
+        it('return type CHANGE_TIME_TRACK with informed currentTime', function () {
+            expect(changeTimeTrack(currentTime)).to.deep.equal({
+                type: CHANGE_TIME_TRACK,
+                currentTime
+            })
+        });
+    })
+
+})

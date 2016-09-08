@@ -9,7 +9,7 @@
     "dev": "npm start",
     "start": "export NODE_ENV=devlopment && node devServer.js",
     "lint": "eslint src",
-    "test": "export NODE_ENV=testing && mocha --watch --compilers js:babel-register **/*_spec.js"
+    "test": "export NODE_ENV=testing && mocha --colors --watch --compilers js:babel-register **/*_spec.js"
   },
   "repository": {
     "type": "git",

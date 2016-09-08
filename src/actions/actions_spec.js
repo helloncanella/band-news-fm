@@ -1,19 +1,28 @@
 import {expect} from 'chai'
 
-describe('Audio Actions', ()=>{
-    
-    describe('playAudio', ()=>{
+xdescribe('Tab Actions', function () {
+    describe('selectTab',()=>{
 
     })
+});
 
-    describe('pauseAudio', ()=>{
 
-    })
-
+xdescribe('Podcasts Actions', function () {
     
-    describe('', function () {
-        ""
+    //This action triggers the request of the columnist's posts'
+    describe('selectColumnist', function () {
+        
     });
-    
 
-})
+    describe('selectPodCast', function () {
+        
+    });
+
+    describe('anounceErrorInFetch', function () {
+        
+    });
+
+    describe('podcastRequestTimeOut', function () {
+        
+    });
+});
