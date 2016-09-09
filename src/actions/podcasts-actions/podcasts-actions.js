@@ -1,12 +1,14 @@
 import xml2json from '../../helpers/xml2json'
 import bandNewsPodcasts from  '../../helpers/bandNewsPodcasts'
+import fetchPolyfill from 'isomorphic-fetch';
+
 
 import {
     SELECT_COLUMNIST,
-    SELECT_PODCAST,
+    FETCHED_PODCASTS,
     ANOUNCE_ERROR_IN_PODCAST_REQUEST,
+    SELECT_PODCAST,
     PODCAST_REQUEST_TIME_OUT,
-    FETCHED_PODCASTS
 } from '../../constants/action-types'
 
 export function selectColumnist(columnist) {
@@ -43,14 +45,20 @@ export function podcastRequestTimeOut() {
 }
 
 
-export function fetchPodcasts(podcastURL) {
+export function fetchPodcasts(columnist,podcastURL) {
 
-    let url = `https://hellon-proxy.herokuapp.com?url=${podcastURL}`
+    let 
+        url = `https://hellon-proxy.herokuapp.com?url=${podcastURL}`,
+        fetch = fetch || fetchPolyfill    
 
     return dispatch => {
         return fetch(url)
             .then(res => res.text())
-            .then(xml => xml2json(xml))
+            .then(xml => {
+                console.log(xml, 'XML')
+                // xml2json(xml)
+            
+            })
             .then(json => {
                 let podcasts = bandNewsPodcasts(json)
             })
