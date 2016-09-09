@@ -9,7 +9,7 @@ describe('Tab Actions', () => {
 
     describe('changeTab', () => {
         it('return type SELECT_COLUMNIST', function () {
-            let tabName = 'columinists'   
+            let tabName = 'columnists'   
             
             expect(changeTab(tabName)).to.deep.equal({
                 type: CHANGE_TAB,

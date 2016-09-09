@@ -1,10 +1,13 @@
 const initialState = {
-    fetchingPosts: false,
-    selectedPodcast:{},
+    
     podcastIsPlaying: false,
+    audioIsReady: false,
     timeTrack:0,
-    fetchedPosts: [],
+
+    fetchingPodcasts: false,
+    selectedPodcast:{},
+    fetchedPodcasts: [],
     selectedColumnist: '',
+    
     selectedTab: 'columnists',
-    audioIsReady: false
 }
