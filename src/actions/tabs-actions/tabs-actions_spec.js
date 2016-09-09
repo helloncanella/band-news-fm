@@ -2,7 +2,7 @@ import {expect} from 'chai'
 
 import {CHANGE_TAB} from '../../constants/action-types'
 
-import {changeTab} from './tab-actions'
+import {changeTab} from './tabs-actions'
  
 
 describe('Tab Actions', () => {   

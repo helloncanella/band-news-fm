@@ -48,7 +48,7 @@ var columnists = [
     "image": "http://imagem.band.com.br/COL_FT1_140.jpg",
     "url": "http://www.band.com.br/rss/colunista_140.xml",
     "bio": "O turista profissional Ricardo Freire dá dicas de viagens pelo Brasil e o mundo, com detalhes que vão fazer a diferença no seu roteiro. Publicitário, Freire publicou sete livros - cinco deles sobre viajar: Viaje na Viagem, Postais por Escrito, Freire's Praias, 100 Dicas Para Viajar Melhor e 100 Praias que Valem a Viagem. Foi editor de Viagem da revista Vip e colaborador da Viagem & Turismo e da Época. Hoje se dedica ao site Viaje na Viagem (www.viajenaviagem.com) e escreve semanalmente no caderno Viagem & Aventura do jornal O Estado De São Paulo.",
-  }
+  } 
 ]
 
 export default columnists

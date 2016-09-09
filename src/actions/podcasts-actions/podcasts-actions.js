@@ -1,3 +1,6 @@
+import xml2json from '../../helpers/xml2json'
+import bandNewsPodcasts from  '../../helpers/bandNewsPodcasts'
+
 import {
     SELECT_COLUMNIST,
     SELECT_PODCAST,
@@ -12,6 +15,7 @@ export function selectColumnist(columnist) {
         columnist
     }
 }
+
 export function selectPodCast(podcast) {
     return {
         type: SELECT_PODCAST,
@@ -29,7 +33,7 @@ export function fetchedPodcasts(podcasts) {
 export function anounceErrorInFetch(error) {
     return {
         type: ANOUNCE_ERROR_IN_PODCAST_REQUEST,
-        error 
+        error
     }
 }
 export function podcastRequestTimeOut() {
@@ -38,4 +42,20 @@ export function podcastRequestTimeOut() {
     }
 }
 
+
+export function fetchPodcasts(podcastURL) {
+
+    let url = `https://hellon-proxy.herokuapp.com?url=${podcastURL}`
+
+    return dispatch => {
+        return fetch(url)
+            .then(res => res.text())
+            .then(xml => xml2json(xml))
+            .then(json => {
+                let podcasts = bandNewsPodcasts(json)
+            })
+            .catch(error => console.log(error))
+    }
+    
+}
 
