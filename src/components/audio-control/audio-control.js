@@ -34,7 +34,7 @@ const style = {
 
 class AudioControl extends React.Component {
     render(){
-        let {isPlaying, url, play, pause, audioIsReady, currentTime, duration, percentage, onSliderDragStop} = this.props
+        let { isPlaying,  url, play, pause, audioIsReady, currentTime, duration, percentage, onSliderDragStop} = this.props        
         
         const 
             iconButtonFunction = isPlaying ? pause : play
@@ -44,7 +44,12 @@ class AudioControl extends React.Component {
         const 
             icon = isPlaying ?  <PauseIcon className="icon pause-icon" style={style.svg}/> : <PlayIcon className="icon play-icon" style={style.svg}/>, 
 
-            slider = <Slider style={style.slider} className='slider' value={percentage} onDragStop={onSliderDragStop}/>,
+            slider = <Slider 
+                        style={style.slider} 
+                        className='slider' 
+                        value={percentage} 
+                        onDragStop={onSliderDragStop}
+                    />,
            
             timeTrack = (
                 <span className="time-track" style={style.currentTime}>
@@ -76,17 +81,20 @@ class AudioControl extends React.Component {
 }
 
 AudioControl.propTypes = {
+
     currentTime : PropTypes.string.isRequired,
     duration : PropTypes.string.isRequired,
     percentage : PropTypes.number.isRequired, 
     audioIsReady : PropTypes.bool.isRequired,
     isPlaying : PropTypes.bool.isRequired,
+    url: PropTypes.string.isRequired,
+    
     pause : PropTypes.func.isRequired, 
     play : PropTypes.func.isRequired, 
     setAudioIsReady : PropTypes.func.isRequired, 
     changeCurrentTime : PropTypes.func.isRequired,
     onSliderDragStop : PropTypes.func.isRequired,
-    url: PropTypes.string.isRequired
+
 }
 
 export default AudioControl

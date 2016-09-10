@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
-import audio from './audio/audio';
-import podcasts from './podcasts/podcasts';
-import tabs from './tabs/tabs';
+import {audio} from './audio/audio';
+import {podcasts} from './podcasts/podcasts';
+import {tabs} from './tabs/tabs';
 
 /**
  * combineReducers is important to understand. As your app might grow in size

@@ -1,8 +1,6 @@
 import React, {PropTypes} from 'react'
 import {List, ListItem, Divider, Avatar} from 'material-ui'
 
-import columnists from '../../data/columnists'
-
 export default class ColumnistsList extends React.Component{
     
     render(){

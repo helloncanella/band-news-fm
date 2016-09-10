@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {Tabs, Tab, AppBar} from 'material-ui'
 // import * as AudioActions from '../../actions/audio-actions/audio-actions';
 // import * as PodcastsActions from '../../actions/podcasts-actions/podcasts-actions';
 // import * as TabsActions from '../../actions/tabs-actions/tabs-actions';
@@ -12,15 +11,16 @@ import PersonIcon from 'material-ui/svg-icons/social/person';
 import AudioIcon from 'material-ui/svg-icons/av/play-circle-outline';
 
 //Tabs Components
-import ColumnistsList from '../../components/columnists-list/columnists-list'
-import AudioControl from '../../components/audio-control/audio-control'
+import ColumnistsList from '../../containers/columnists-list/columnists-list'
+import PodcastsList from '../../containers/podcasts-list/podcasts-list'
+import AudioControl from '../../containers/audio-control/audio-control'
 
-
+import {Tabs, Tab, AppBar} from 'material-ui'
 /**
  * It is common practice to have a 'Root' container/component require our main App (this one).
  * Again, this is because it serves to wrap the rest of our application with the Provider
  * component to make the Redux store available to the rest of the app.
- */ 
+ */  
 export class BandNews extends Component {
   _renderTabs() {
     const { tabs } = this.props
@@ -71,18 +71,21 @@ function mapStateToProps(state) {
     tabs: [
       {
         component: <ColumnistsList />,
-        icon: <GroupIcon />
+        icon: <GroupIcon />,
+        name: 'columnists'
       },
       {
-        component: (<h1>Hello</h1>),
-        icon: <PersonIcon />
+        component: (<PodcastsList/>),
+        icon: <PersonIcon />,
+        name: 'podcasts',
       },
-      {
-        component: <AudioControl />,
-        icon: <AudioIcon />
-      }
+      // {
+      //   component: <AudioControl />,
+      //   icon: <AudioIcon />,
+      //   name: 'audio'
+      // }
     ],
-    titleAppBar: 'Olá' 
+    titleAppBar: state.tabs
   };
 }
 

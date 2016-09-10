@@ -23,5 +23,5 @@ app.listen(3000, '192.168.1.2', (err) => {
     return;
   }
 
-  console.log('Listening at http://localhost:3000');
+  console.log('Listening at http://192.168.1.2:3000');
 });

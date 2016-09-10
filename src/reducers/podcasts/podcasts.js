@@ -8,7 +8,7 @@ import {
 
 export const initialPodcastsState = {
     fetchingPodcasts: false,
-    selectedPodcast: {},
+    selectedPodcast: '',
     fetchedPodcasts: [],
     selectedColumnist: '',
 }
@@ -30,7 +30,7 @@ export function podcasts(state = initialPodcastsState, action = {}) {
             let {url} = action
 
             return Object.assign({}, state, {
-                url
+                selectedPodcast:url
             })
 
         case ANOUNCE_ERROR_IN_PODCAST_REQUEST:

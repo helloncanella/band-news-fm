@@ -40,14 +40,14 @@ describe('Podcast reducer', function () {
                 url
             },
             oldState = {
-                url: 'www.com.br',
+                selectedPodcast: 'www.com.br',
                 trelo: 'biu'
             },
             newState = podcasts(oldState, action)
           
 
         expect(newState).to.deep.equal({
-            url,
+            selectedPodcast:url,
             trelo: 'biu'
         })
 
