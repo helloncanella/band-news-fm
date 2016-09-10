@@ -6,7 +6,7 @@ import {
     PAUSE_PODCAST,
     SET_AUDIO_IS_READY,
     ANOUNCE_ERROR_IN_AUDIO_DOWNLOAD,
-    CHANGE_TIME_TRACK,
+    CHANGE_CURRENT_TIME,
     SET_AUDIO_DURATION
 } from '../../constants/action-types'
 
@@ -63,10 +63,10 @@ describe('Audio reducer', function () {
         })
     })
 
-    it('when action type is CHANGE_TIME_TRACK set new currentPosition passed by props', () => {
+    it('when action type is CHANGE_CURRENT_TIME set new currentPosition passed by props', () => {
         let
             action = {
-                type: CHANGE_TIME_TRACK,
+                type: CHANGE_CURRENT_TIME,
                 currentPosition: 25
             },
             oldState = {

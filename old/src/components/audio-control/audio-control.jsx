@@ -17,7 +17,7 @@ const style = {
         marginTop: '10vh',
         fill: pink500
     },
-    timeTrack:{
+    currentTime:{
         fontSize: '1.8rem',
         fontFamily: 'roboto',
     },
@@ -32,7 +32,7 @@ const style = {
 const AudioControl = () => (
     <div className="audio-control grid" style={style.audioControl}>
         <Slider style={style.slider}/>
-        <span className="time-track" style={style.timeTrack}>
+        <span className="time-track" style={style.currentTime}>
             0:22 / 15:35
         </span>
         <audio src=""></audio>

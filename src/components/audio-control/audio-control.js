@@ -1,7 +1,9 @@
-import React from 'react'
+import React, {PropTypes} from 'react'
 import PlayIcon from 'material-ui/svg-icons/av/play-circle-outline'
+import PauseIcon from 'material-ui/svg-icons/av/pause-circle-outline'
+import Spinner from 'material-ui/svg-icons/av/loop'
 import {pink500} from 'material-ui/styles/colors'
-import {Slider} from 'material-ui'
+import {Slider, IconButton} from 'material-ui'
 
 const style = {
     audioControl: {
@@ -17,7 +19,7 @@ const style = {
         marginTop: '10vh',
         fill: pink500
     },
-    timeTrack:{
+    currentTime:{
         fontSize: '1.8rem',
         fontFamily: 'roboto',
     },
@@ -26,18 +28,65 @@ const style = {
         color: pink500,
         margin:'0',
         marginBottom:'-45px'        
-    }    
+    }
 }
 
-const AudioControl = () => (
-    <div className="audio-control grid" style={style.audioControl}>
-        <Slider style={style.slider}/>
-        <span className="time-track" style={style.timeTrack}>
-            0:22 / 15:35
-        </span>
-        <audio src=""></audio>
-        <PlayIcon className="play-icon" style={style.svg}/>
-    </div>
-)
+
+class AudioControl extends React.Component {
+    render(){
+        let {isPlaying, url, play, pause, audioIsReady, currentTime, duration, percentage, onSliderDragStop} = this.props
+        
+        const 
+            iconButtonFunction = isPlaying ? pause : play
+            ,spinnerStyle = {display: audioIsReady ? 'none' : 'block'}
+             
+
+        const 
+            icon = isPlaying ?  <PauseIcon className="icon pause-icon" style={style.svg}/> : <PlayIcon className="icon play-icon" style={style.svg}/>, 
+
+            slider = <Slider style={style.slider} className='slider' value={percentage} onDragStop={onSliderDragStop}/>,
+           
+            timeTrack = (
+                <span className="time-track" style={style.currentTime}>
+                    <span className="current-time">{currentTime}</span> /
+                    <span className="duration">{duration}</span>  
+                </span>
+            ),
+            
+            audio = (<audio src={url} autoplay></audio>),
+
+            spinner = (<div className="spinner" style={spinnerStyle}></div>),    
+
+            iconButton = (
+                <IconButton className='icon-button' onTouchTap={iconButtonFunction}>
+                    {icon}
+                </IconButton>
+            )
+
+        return (
+            <div className="audio-control grid" style={style.audioControl}>
+                {slider}
+                {timeTrack}
+                {iconButton}
+                {audio}                
+                {spinner}
+            </div>
+        )
+    }
+}
+
+AudioControl.propTypes = {
+    currentTime : PropTypes.string.isRequired,
+    duration : PropTypes.string.isRequired,
+    percentage : PropTypes.number.isRequired, 
+    audioIsReady : PropTypes.bool.isRequired,
+    isPlaying : PropTypes.bool.isRequired,
+    pause : PropTypes.func.isRequired, 
+    play : PropTypes.func.isRequired, 
+    setAudioIsReady : PropTypes.func.isRequired, 
+    changeCurrentTime : PropTypes.func.isRequired,
+    onSliderDragStop : PropTypes.func.isRequired,
+    url: PropTypes.string.isRequired
+}
 
 export default AudioControl

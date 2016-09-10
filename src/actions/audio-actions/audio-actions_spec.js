@@ -6,7 +6,7 @@ import {
     SET_AUDIO_IS_READY,
     ANOUNCE_ERROR_IN_AUDIO_DOWNLOAD,
     SET_AUDIO_DURATION,
-    CHANGE_TIME_TRACK
+    CHANGE_CURRENT_TIME
 } from '../../constants/action-types'
 
 import {
@@ -14,7 +14,7 @@ import {
     pauseAudio,
     audioError,
     setAudioIsReady,
-    changeTimeTrack,
+    changeCurrentTime,
     setAudioDuration
 } from './audio-actions'
 
@@ -68,12 +68,12 @@ describe('Audio Actions', () => {
         });
     })
 
-    describe('changeTimeTrack', () => {
+    describe('changeCurrentTime', () => {
         let currentTime = 235465
 
-        it('return type CHANGE_TIME_TRACK with informed currentTime', function () {
-            expect(changeTimeTrack(currentTime)).to.deep.equal({
-                type: CHANGE_TIME_TRACK,
+        it('return type CHANGE_CURRENT_TIME with informed currentTime', function () {
+            expect(changeCurrentTime(currentTime)).to.deep.equal({
+                type: CHANGE_CURRENT_TIME,
                 currentTime
             })
         });

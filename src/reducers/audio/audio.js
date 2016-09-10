@@ -3,14 +3,14 @@ import {
     PAUSE_PODCAST,
     SET_AUDIO_IS_READY,
     ANOUNCE_ERROR_IN_AUDIO_DOWNLOAD,
-    CHANGE_TIME_TRACK,
+    CHANGE_CURRENT_TIME,
     SET_AUDIO_DURATION
 } from '../../constants/action-types'
 
 export const initialAudioState = {
     podcastIsPlaying: false,
     audioIsReady: false,
-    timeTrack: 0,
+    currentTime: 0,
     duration: null
 }
 
@@ -34,7 +34,7 @@ export function audio(state = initialAudioState, action = {}) {
             return Object.assign({}, state, {
                 audioIsReady: true
             })
-        case CHANGE_TIME_TRACK:
+        case CHANGE_CURRENT_TIME:
             return Object.assign({}, state, {
                 currentPosition: action.currentPosition
             })

@@ -3,7 +3,7 @@ import {
     PAUSE_PODCAST,
     SET_AUDIO_IS_READY,
     ANOUNCE_ERROR_IN_AUDIO_DOWNLOAD,
-    CHANGE_TIME_TRACK,
+    CHANGE_CURRENT_TIME,
     SET_AUDIO_DURATION
 } from '../../constants/action-types'
 
@@ -39,9 +39,9 @@ export function setAudioIsReady() {
         type: SET_AUDIO_IS_READY,
     }
 }
-export function changeTimeTrack(currentTime) {
+export function changeCurrentTime(currentTime) {
     return {
-        type: CHANGE_TIME_TRACK,
+        type: CHANGE_CURRENT_TIME,
         currentTime
     }
 }

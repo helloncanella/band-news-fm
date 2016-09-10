@@ -2,7 +2,8 @@ const initialState = {
     
     podcastIsPlaying: false,
     audioIsReady: false,
-    timeTrack:0,
+    currentTime:0,
+    duration,
 
     fetchingPodcasts: false,
     selectedPodcast:{},
