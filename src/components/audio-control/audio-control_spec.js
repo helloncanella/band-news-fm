@@ -9,24 +9,8 @@ chai.use(chaiEnzyme()) // Note the invocation at the end
 
 function wrapper(props){
 
-    let {
-            isPlaying = false,
-            currentTime = '0:00',
-            percentage = 0,
-            url = '', 
-            audioIsReady = false,
-            duration = '',
-            pause = ()=>{}, 
-            play = () => {}, 
-            setAudioIsReady = () => {}, 
-            changeCurrentTime = () => {},
-            onSliderDragStop = ()=>{} 
+    let component = shallow(<AudioControl {...props} />)
         
-        } = props,
-
-        component = shallow(<AudioControl {...props} />)
-        
-
     return {
         props,
         component

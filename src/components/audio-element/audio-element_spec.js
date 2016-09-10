@@ -9,13 +9,7 @@ chai.use(chaiEnzyme()) // Note the invocation at the end
 
 function wrapper(props) {
 
-    let {
-        url = '',
-        setAudioIsReady = () => {}
-    } = props,
-
-        audio = shallow(<AudioElement {...props} />).find('audio')
-
+    let audio = shallow(<AudioElement {...props} />).find('audio')
 
     return audio
 

@@ -9,12 +9,7 @@ chai.use(chaiEnzyme()) // Note the invocation at the end
 
 function wrapper(props){
 
-    let {
-        columnists = [],
-        fetchPodcasts= ()=>{}        
-    } = props,
-
-        component = shallow(<ColuministsList {...props} />)        
+    let component = shallow(<ColuministsList {...props} />)        
 
     return {
         props,
