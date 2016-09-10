@@ -27,16 +27,10 @@ export function podcasts(state = initialPodcastsState, action = {}) {
             })
 
         case SELECT_PODCAST:
-            let
-                {selectedPodcast} = action,
-                {url, duration} = selectedPodcast
+            let {url} = action
 
             return Object.assign({}, state, {
-                fetchingPodcasts: false,
-                selectedPodcast: {
-                    url, 
-                    duration
-                }
+                url
             })
 
         case ANOUNCE_ERROR_IN_PODCAST_REQUEST:

@@ -10,7 +10,7 @@ import {
 
 import {
     selectColumnist,
-    selectPodCast,
+    selectPodcast,
     anounceErrorInFetch,
     podcastRequestTimeOut,
     fetchedPodcasts    
@@ -32,19 +32,13 @@ describe('Podcasts Actions', () => {
 
     })
 
-    describe('selectPodCast', () => {
-        it('return type SELECT_PODCAST and podcast description', function () {
-            let
-                duration = 45365,
-                url = 'www.blabla.com',
-                podcast = {
-                    duration,
-                    url
-                }
+    describe('selectPodcast', () => {
+        it('return type SELECT_PODCAST and the url of the podcast', function () {
+            let url = 'www.blabla.com'
 
-            expect(selectPodCast(podcast)).to.deep.equal({
+            expect(selectPodcast(url)).to.deep.equal({
                 type: SELECT_PODCAST,
-                podcast
+                url
             })
         });
     })

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {PropTypes} from 'react'
 import {List, ListItem, Divider, Avatar} from 'material-ui'
 
 import columnists from '../../data/columnists'
@@ -7,12 +7,16 @@ export default class ColumnistsList extends React.Component{
     
     render(){
         
+        let {columnists, fetchPodcasts} = this.props
+
         const list = columnists.map((columnist)=>{
-            let {name, image, slug} = columnist
-            
+            let {name, image, slug, url} = columnist
+      
             return (
                 <div className={slug}  key={slug}>
-                    <ListItem 
+                    <ListItem
+                        onTouchTap={()=>{fetchPodcasts(name, url)}}
+                        className='list-item' 
                         primaryText={name}
                         leftAvatar={<Avatar src={image}/>}
                     />
@@ -23,4 +27,9 @@ export default class ColumnistsList extends React.Component{
         
         return <List className="columnistsList">{list}</List>
     }
+}
+
+ColumnistsList.propTypes = {
+    columnists : PropTypes.array.isRequired,
+    fetchPodcasts: PropTypes.func.isRequired
 }

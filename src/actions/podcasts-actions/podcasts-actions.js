@@ -18,10 +18,10 @@ export function selectColumnist(columnist) {
     }
 }
 
-export function selectPodCast(podcast) {
+export function selectPodcast(url) {
     return {
         type: SELECT_PODCAST,
-        podcast
+        url
     }
 }
 

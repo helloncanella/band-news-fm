@@ -12,7 +12,7 @@ import {
 
 describe('Podcast reducer', function () {
 
-    it('when action type is SELECT_COLUMNIST change the slug of selected columnist and fetch posts', () => {
+    it('when action type is SELECT_COLUMNIST change the the name of selected columnist and fetch posts', () => {
 
         let
             action = {
@@ -32,26 +32,25 @@ describe('Podcast reducer', function () {
         })
     })
 
-    it('when action type is SELECT_PODCAST set the downloaded podcasts (selectedPodcast) and fetchingPodcasts to false', () => {
+    it('when action type is SELECT_PODCAST set the url of selected podcast', () => {
         let
+            url = 'www.any.com',
             action = {
                 type: SELECT_PODCAST,
-                selectedPodcast: {
-                    url: 'fjfkladçfasd',
-                    duration: 12113213
-                }
+                url
             },
             oldState = {
-                selectedPodcast: {},
-                fetchingPodcasts: true,
+                url: 'www.com.br',
                 trelo: 'biu'
             },
-            newState = podcasts(oldState, action),
-            selectedPodcast = newState.selectedPodcast
+            newState = podcasts(oldState, action)
+          
 
-        expect(selectedPodcast.url).to.exist
-        expect(selectedPodcast.duration).to.exist
-        expect(newState.fetchingPodcasts).to.not.true
+        expect(newState).to.deep.equal({
+            url,
+            trelo: 'biu'
+        })
+
     })
 
 
