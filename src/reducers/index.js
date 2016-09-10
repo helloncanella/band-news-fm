@@ -1,5 +1,7 @@
 import { combineReducers } from 'redux';
-import counter from './counter';
+import audio from './audio/audio';
+import podcasts from './podcasts/podcasts';
+import tabs from './tabs/tabs';
 
 /**
  * combineReducers is important to understand. As your app might grow in size
@@ -15,7 +17,9 @@ import counter from './counter';
  * More info: http://rackt.org/redux/docs/api/combineReducers.html
  */
 const rootReducer = combineReducers({
-  counter, // you might be used to: counter: counter,
+  audio,
+  podcasts,
+  tabs
 });
 
 export default rootReducer;

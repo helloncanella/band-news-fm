@@ -1,7 +1,7 @@
 import xml2json from '../../helpers/xml2json'
 import bandNewsPodcasts from  '../../helpers/bandNewsPodcasts'
 import fetchPolyfill from 'isomorphic-fetch';
-
+import {parseString as convertXml2Json} from 'xml2js'
 
 import {
     SELECT_COLUMNIST,
@@ -52,17 +52,30 @@ export function fetchPodcasts(columnist,podcastURL) {
         fetch = fetch || fetchPolyfill    
 
     return dispatch => {
+        dispatch(selectColumnist(columnist))
+
         return fetch(url)
-            .then(res => res.text())
-            .then(xml => {
-                console.log(xml, 'XML')
-                // xml2json(xml)
-            
+            .then(res => {
+                if(!res.ok){
+                    return Promise.reject(res.status)
+                }
+
+                return res.text()
+            })
+            .then(xml => {                
+                return new Promise((resolve)=>{
+                     convertXml2Json(xml, function (err, json) {
+                         resolve(json)
+                     })   
+                })            
             })
             .then(json => {
                 let podcasts = bandNewsPodcasts(json)
+                dispatch(fetchedPodcasts(podcasts))
             })
-            .catch(error => console.log(error))
+            .catch(status => {
+                dispatch(anounceErrorInFetch(`status response: ${status}`))
+            })
     }
     
 }

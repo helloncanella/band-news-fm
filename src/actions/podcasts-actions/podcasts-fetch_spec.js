@@ -30,7 +30,7 @@ describe('async actions', () => {
             .query({
                 url: ''
             })
-            .reply(500, '')
+            .reply(404, '')
 
         nock('https://hellon-proxy.herokuapp.com')
             .get('/')
@@ -54,8 +54,7 @@ describe('async actions', () => {
     it('creates SELECT_COLUMNIST and FETCHED_PODCASTS when fetchedPodcasts is triggered with successful response', (done) => {
 
         var xml = fakePodcastXMLResponse
-        convertXml2Json(xml, function (err, json) {
-            
+        convertXml2Json(xml, function (err, json) {           
             
             let 
                 url = 'www.mockSite.com',
@@ -65,19 +64,49 @@ describe('async actions', () => {
                     {
                         type: SELECT_COLUMNIST,
                         columnist
-                    },            
+                    },
+                    {
+                        type: FETCHED_PODCASTS,
+                        podcasts
+                    }            
                 ]
 
 
             return store.dispatch(fetchPodcasts(columnist, url))
                 .then(() => { // return of async actions
-                    expect(store.getActions()).toEqual(expectedActions)
+                    expect(store.getActions()).to.deep.equal(expectedActions)
                     done()
                 })
-            }); 
+            });
+    })
 
-        
 
+    it('action type ANOUNCE_ERROR_IN_PODCAST_REQUEST is created when a there is fetching problems', (done) => {
+
+        var xml = fakePodcastXMLResponse
+        convertXml2Json(xml, function (err, json) {          
+            
+            let 
+                url = '',
+                columnist = 'Ricardo Boechat',
+                expectedActions = [
+                    {
+                        type: SELECT_COLUMNIST,
+                        columnist
+                    },
+                    {
+                        type: ANOUNCE_ERROR_IN_PODCAST_REQUEST,
+                        error: `status response: 404`
+                    }
+                ]
+
+
+            return store.dispatch(fetchPodcasts(columnist, url))
+                .then(() => { // return of async actions
+                    expect(store.getActions()).to.deep.equal(expectedActions)
+                    done()
+                })
+            });
     })
     
 })

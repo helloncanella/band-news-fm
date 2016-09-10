@@ -1,8 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as CounterActions from '../../actions/CounterActions';
 import {Tabs, Tab, AppBar} from 'material-ui'
+// import * as AudioActions from '../../actions/audio-actions/audio-actions';
+// import * as PodcastsActions from '../../actions/podcasts-actions/podcasts-actions';
+// import * as TabsActions from '../../actions/tabs-actions/tabs-actions';
 
 //Tabs Icons
 import GroupIcon from 'material-ui/svg-icons/social/group';
@@ -18,7 +20,7 @@ import AudioControl from '../../components/audio-control/audio-control'
  * It is common practice to have a 'Root' container/component require our main App (this one).
  * Again, this is because it serves to wrap the rest of our application with the Provider
  * component to make the Redux store available to the rest of the app.
- */
+ */ 
 export class BandNews extends Component {
   _renderTabs() {
     const { tabs } = this.props

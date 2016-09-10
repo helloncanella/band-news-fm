@@ -4,7 +4,6 @@ const webpack = require('webpack');
 module.exports = {
   devtool: 'source-map',
   entry: [
-    'whatwg-fetch',
     './src/index'
   ],
   output: {

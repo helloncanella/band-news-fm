@@ -3,7 +3,8 @@ import {
     PAUSE_PODCAST,
     SET_AUDIO_IS_READY,
     ANOUNCE_ERROR_IN_AUDIO_DOWNLOAD,
-    CHANGE_TIME_TRACK
+    CHANGE_TIME_TRACK,
+    SET_AUDIO_DURATION
 } from '../../constants/action-types'
 
 export function playAudio() {
@@ -23,6 +24,16 @@ export function audioError(error) {
         error
     }
 }
+
+
+export function setAudioDuration(duration) {
+    return {
+        type: SET_AUDIO_DURATION,
+        duration
+    }
+}
+
+
 export function setAudioIsReady() {
     return {
         type: SET_AUDIO_IS_READY,

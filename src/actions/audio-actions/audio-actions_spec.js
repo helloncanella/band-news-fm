@@ -5,6 +5,7 @@ import {
     PAUSE_PODCAST,
     SET_AUDIO_IS_READY,
     ANOUNCE_ERROR_IN_AUDIO_DOWNLOAD,
+    SET_AUDIO_DURATION,
     CHANGE_TIME_TRACK
 } from '../../constants/action-types'
 
@@ -13,7 +14,8 @@ import {
     pauseAudio,
     audioError,
     setAudioIsReady,
-    changeTimeTrack
+    changeTimeTrack,
+    setAudioDuration
 } from './audio-actions'
 
 
@@ -32,6 +34,17 @@ describe('Audio Actions', () => {
         it('return type PAUSE_PODCAST', function () {
             expect(pauseAudio()).to.deep.equal({
                 type: PAUSE_PODCAST
+            })
+        });
+    })
+
+    describe('setAudioDuration', () => {
+        let duration = 15464
+
+        it('return type SET_AUDIO_DURATION and its value', function () {
+            expect(setAudioDuration(duration)).to.deep.equal({
+                type: SET_AUDIO_DURATION,
+                duration    
             })
         });
     })

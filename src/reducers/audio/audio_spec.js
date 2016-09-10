@@ -6,7 +6,8 @@ import {
     PAUSE_PODCAST,
     SET_AUDIO_IS_READY,
     ANOUNCE_ERROR_IN_AUDIO_DOWNLOAD,
-    CHANGE_TIME_TRACK
+    CHANGE_TIME_TRACK,
+    SET_AUDIO_DURATION
 } from '../../constants/action-types'
 
 
@@ -75,6 +76,23 @@ describe('Audio reducer', function () {
 
         expect(audio(oldState, action)).to.deep.equal({
             currentPosition: 25, 
+            trelo: 'biu'
+        })
+    })
+
+    it('when action type is SET_AUDIO_DURATION set audio duration passed by props', () => {
+        let
+            action = {
+                type: SET_AUDIO_DURATION,
+                duration: 25
+            },
+            oldState = {
+                duration: 0,
+                trelo: 'biu'
+            }
+
+        expect(audio(oldState, action)).to.deep.equal({
+            duration: 25, 
             trelo: 'biu'
         })
     })
