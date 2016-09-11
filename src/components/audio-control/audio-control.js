@@ -34,18 +34,24 @@ const style = {
 
 
 class AudioControl extends React.Component {
+
+    componentWillReceiveProps(newProps){
+        console.log(newProps)
+        console.log('willReceiveProps', true)
+    }
+
     render(){
         let { podcastIsPlaying , setAudioIsReady, changeCurrentTime, url, play, pause, audioIsReady, currentTime, duration, setAudioDuration, percentage, onSliderDragStop} = this.props        
-              
 
+      
         const 
             iconButtonFunction = podcastIsPlaying ? pause : play
             ,spinnerStyle = {display: audioIsReady ? 'none' : 'block'}
              
+            console.log(podcastIsPlaying);
 
         const 
             icon = podcastIsPlaying ?  <PauseIcon className="icon pause-icon" style={style.svg}/> : <PlayIcon className="icon play-icon" style={style.svg}/>, 
-
             slider = <Slider 
                         style={style.slider} 
                         className='slider' 

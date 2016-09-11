@@ -4,8 +4,11 @@ import {
     SET_AUDIO_IS_READY,
     ANOUNCE_ERROR_IN_AUDIO_DOWNLOAD,
     CHANGE_CURRENT_TIME,
-    SET_AUDIO_DURATION
+    SET_AUDIO_DURATION,
+    SELECT_PODCAST
 } from '../../constants/action-types'
+
+
 
 export const initialAudioState = {
     podcastIsPlaying: false,
@@ -21,6 +24,11 @@ export function audio(state = initialAudioState, action = {}) {
                 podcastIsPlaying: true
             })
 
+        case SELECT_PODCAST:
+            return Object.assign({}, state, {
+                podcastIsPlaying: false,
+                audioIsReady: false 
+            })                  
         case SET_AUDIO_DURATION:
             return Object.assign({}, state, {
                 duration: action.duration
@@ -37,7 +45,7 @@ export function audio(state = initialAudioState, action = {}) {
             })
         case CHANGE_CURRENT_TIME:
             return Object.assign({}, state, {
-                currentPosition: action.currentPosition
+                currentTime: action.currentTime
             })
 
         default:

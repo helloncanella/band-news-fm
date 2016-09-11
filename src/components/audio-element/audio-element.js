@@ -7,6 +7,7 @@ class AudioElement extends React.Component {
         let duration = event.target.duration
         this.props.setAudioDuration(duration)
         this.props.setAudioIsReady()
+       event.target.play()
     }
 
     _playAudio() {
@@ -60,6 +61,7 @@ class AudioElement extends React.Component {
         let {url, setAudioIsReady, podcastIsPlaying, changeCurrentTime, currentTime} = this.props
 
         return <audio
+            
             src={url}            
             onCanPlay={(event) => { this._onCanPlay.call(this, event) } }
             onTimeUpdate={(event) => { this._onTimeUpdate.call(this, event) } }

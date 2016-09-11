@@ -32,7 +32,7 @@ describe('Podcast reducer', function () {
         })
     })
 
-    it('when action type is SELECT_PODCAST set the url of selected podcast', () => {
+    it('when action type is SELECT_PODCAST pause the last audio and set url of the new selected podcast', () => {
         let
             url = 'www.any.com',
             action = {
@@ -40,6 +40,8 @@ describe('Podcast reducer', function () {
                 url
             },
             oldState = {
+                podcastIsPlaying: true,
+                audioIsReady: true,
                 selectedPodcast: 'www.com.br',
                 trelo: 'biu'
             },
@@ -48,7 +50,9 @@ describe('Podcast reducer', function () {
 
         expect(newState).to.deep.equal({
             selectedPodcast:url,
-            trelo: 'biu'
+            trelo: 'biu',
+            podcastIsPlaying: false,
+            audioIsReady: false
         })
 
     })

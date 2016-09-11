@@ -15,6 +15,7 @@ function mapStateToProps(state) {
         
     } = state.audio
 
+    console.log('STATE AUDIO',state.audio)
 
 
     let 
