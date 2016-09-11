@@ -32,7 +32,8 @@ export function audio(state = initialAudioState, action = {}) {
 
         case SET_AUDIO_IS_READY:
             return Object.assign({}, state, {
-                audioIsReady: true
+                audioIsReady: true,
+                podcastIsPlaying: true
             })
         case CHANGE_CURRENT_TIME:
             return Object.assign({}, state, {

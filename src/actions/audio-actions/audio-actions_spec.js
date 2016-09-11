@@ -68,6 +68,14 @@ describe('Audio Actions', () => {
         });
     })
 
+    describe('changeSliderPositon', () => {
+        it('return type SET_AUDIO_IS_READY', function () {
+            expect(setAudioIsReady()).to.deep.equal({
+                type: SET_AUDIO_IS_READY,
+            })
+        });
+    })
+
     describe('changeCurrentTime', () => {
         let currentTime = 235465
 

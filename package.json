@@ -51,9 +51,11 @@
     "style-loader": "^0.13.0",
     "webpack": "^1.12.12",
     "webpack-dev-middleware": "^1.4.0",
+    "webpack-encoding-plugin": "^0.2.0",
     "webpack-hot-middleware": "^2.6.0"
   },
   "dependencies": {
+    "jquery": "^3.1.0",
     "material-ui": "latest",
     "react": "latest",
     "react-dom": "latest",

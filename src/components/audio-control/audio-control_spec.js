@@ -25,15 +25,15 @@ describe('AudioControls', function(){
 
         describe('icon', ()=>{
             
-            it('is pause when the state isPlaying is false', function () {
-                let {component} = wrapper({isPlaying: false})
+            it('is pause when the state podcastIsPlaying is false', function () {
+                let {component} = wrapper({podcastIsPlaying: false})
                 
                 expect(component.find('.play-icon')).to.exist  
                 expect(component.find('.pause-icon')).to.not.exist    
             });
             
-            it('is play when the state isPlaying is true', function () {
-                let {component} = wrapper({isPlaying: true})
+            it('is play when the state podcastIsPlaying is true', function () {
+                let {component} = wrapper({podcastIsPlaying: true})
                 
                 expect(component.find('.pause-icon')).to.exist
                 expect(component.find('.play-icon')).to.not.exist 
@@ -50,8 +50,8 @@ describe('AudioControls', function(){
                  pause = spy()
             })
             
-            it('if isPlaying is false, should trigger play function', function () {
-                let {component} = wrapper({isPlaying: false, play, pause})
+            it('if podcastIsPlaying is false, should trigger play function', function () {
+                let {component} = wrapper({podcastIsPlaying: false, play, pause})
             
                 component.find('.icon-button').props().onTouchTap()
 
@@ -59,8 +59,8 @@ describe('AudioControls', function(){
                 expect(pause.called).to.not.true
             });
             
-            it('if isPlaying is true, should trigger pause function', function () {
-                let {component} = wrapper({isPlaying: true, play, pause})
+            it('if podcastIsPlaying is true, should trigger pause function', function () {
+                let {component} = wrapper({podcastIsPlaying: true, play, pause})
 
                 component.find('.icon-button').props().onTouchTap()
 
@@ -120,11 +120,18 @@ describe('AudioControls', function(){
             let 
                 onDragStopSpy = spy(),
                 {component} = wrapper({onSliderDragStop: onDragStopSpy}),
-                slider = component.find('.slider')
-            
-            slider.props().onDragStop()
+                      
+                slider = component.find('.slider'),
 
-            expect(onDragStopSpy.called).to.true
+                percentage = 0.1
+            
+            slider.simulate('dragStop',{
+                target: {
+                    value: percentage
+                }
+            })
+
+            expect(onDragStopSpy.calledWith(percentage)).to.true
 
         })
     });
@@ -134,9 +141,9 @@ describe('AudioControls', function(){
         it('should hold url passed', ()=>{
             let 
                 url = 'www.any.com',
-                audio = wrapper({url}).component.find('audio')
+                audio = wrapper({url}).component.find('AudioElement')
             
-            expect(audio.props().src).to.equal(url)
+            expect(audio.props().url).to.equal(url)
         })
     });
 

@@ -46,4 +46,14 @@ export function changeCurrentTime(currentTime) {
     }
 }
 
+export function onSliderDragStop(percentage){
+   return (dispatch,getState) =>{
+       let 
+            {duration} = getState(),
+            newCurrentTime = percentage * duration
+
+       dispatch(changeCurrentTime(newCurrentTime))
+   }      
+}
+
 

@@ -5,40 +5,55 @@ import * as actions from '../../actions/audio-actions/audio-actions';
 
 import AudioControl from '../../components/audio-control/audio-control'
 
-function mapStateToProps(state) {
+function mapStateToProps(state) {   
 
     let {
-        currentTime, 
-        duration, 
-        percentage,
-        audioIsReady, 
-        isPlaying, 
-        url,
-    } = state
+        currentTime,
+        duration,
+        audioIsReady,
+        podcastIsPlaying,
+        
+    } = state.audio
+
+
+
+    let 
+        {selectedPodcast} = state.podcasts,
+        url = selectedPodcast,
+        percentage = duration ? percentage = (currentTime / duration) : 0
+
 
     return {
-        currentTime, 
-        duration, 
-        percentage,
-        audioIsReady, 
-        isPlaying, 
-        url        
+        currentTime,
+        duration,
+        percentage, 
+        audioIsReady,
+        podcastIsPlaying,
+        url
     };
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        pause: () =>{
+        pause: () => {
             dispatch(actions.pauseAudio())
         },
-        play:()=>{
+        play: () => {
             dispatch(actions.playAudio())
         },
-        setAudioIsReady:()=>{
+        setAudioIsReady: () => {
             dispatch(actions.setAudioIsReady())
         },
-        changeCurrentTime: ()=>{},
-        onSliderDragStop: () =>{}
+        changeCurrentTime: (currentTime) => {
+            dispatch(actions.changeCurrentTime(currentTime))
+        },
+        onSliderDragStop: (percentage) => {
+            dispatch(actions.onSliderDragStop(percentage))
+        },
+        setAudioDuration: (duration)=>{
+            dispatch(actions.setAudioDuration(duration))
+        },
+
     };
 }
 

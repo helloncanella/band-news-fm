@@ -4,6 +4,7 @@ import PauseIcon from 'material-ui/svg-icons/av/pause-circle-outline'
 import Spinner from 'material-ui/svg-icons/av/loop'
 import {pink500} from 'material-ui/styles/colors'
 import {Slider, IconButton} from 'material-ui'
+import AudioElement from '../audio-element/audio-element'
 
 const style = {
     audioControl: {
@@ -34,21 +35,25 @@ const style = {
 
 class AudioControl extends React.Component {
     render(){
-        let { isPlaying,  url, play, pause, audioIsReady, currentTime, duration, percentage, onSliderDragStop} = this.props        
-        
+        let { podcastIsPlaying , setAudioIsReady, changeCurrentTime, url, play, pause, audioIsReady, currentTime, duration, setAudioDuration, percentage, onSliderDragStop} = this.props        
+              
+
         const 
-            iconButtonFunction = isPlaying ? pause : play
+            iconButtonFunction = podcastIsPlaying ? pause : play
             ,spinnerStyle = {display: audioIsReady ? 'none' : 'block'}
              
 
         const 
-            icon = isPlaying ?  <PauseIcon className="icon pause-icon" style={style.svg}/> : <PlayIcon className="icon play-icon" style={style.svg}/>, 
+            icon = podcastIsPlaying ?  <PauseIcon className="icon pause-icon" style={style.svg}/> : <PlayIcon className="icon play-icon" style={style.svg}/>, 
 
             slider = <Slider 
                         style={style.slider} 
                         className='slider' 
                         value={percentage} 
-                        onDragStop={onSliderDragStop}
+                        onDragStop={ (event) => { 
+                            let percentage = event.target.value
+                            onSliderDragStop(percentage) 
+                        }}
                     />,
            
             timeTrack = (
@@ -58,7 +63,14 @@ class AudioControl extends React.Component {
                 </span>
             ),
             
-            audio = (<audio src={url} autoplay></audio>),
+            audio = (<AudioElement 
+                        url={url}
+                        currentTime={currentTime} 
+                        setAudioIsReady={setAudioIsReady}
+                        setAudioDuration={setAudioDuration}
+                        changeCurrentTime= {changeCurrentTime}
+                        podcastIsPlaying={podcastIsPlaying}
+                    />),
 
             spinner = (<div className="spinner" style={spinnerStyle}></div>),    
 
@@ -82,11 +94,11 @@ class AudioControl extends React.Component {
 
 AudioControl.propTypes = {
 
-    currentTime : PropTypes.string.isRequired,
-    duration : PropTypes.string.isRequired,
+    currentTime : PropTypes.number.isRequired,
+    duration : PropTypes.number,
     percentage : PropTypes.number.isRequired, 
     audioIsReady : PropTypes.bool.isRequired,
-    isPlaying : PropTypes.bool.isRequired,
+    podcastIsPlaying : PropTypes.bool.isRequired,
     url: PropTypes.string.isRequired,
     
     pause : PropTypes.func.isRequired, 

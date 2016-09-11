@@ -46,7 +46,7 @@ describe('Audio reducer', function () {
         })
     })
 
-    it('when action type is SET_AUDIO_IS_READY set audioIsReady to false', () => {
+    it('when action type is SET_AUDIO_IS_READY set audioIsReady to true and set podcastIsPlaying to true', () => {
 
         let
             action = {
@@ -54,11 +54,13 @@ describe('Audio reducer', function () {
             },
             oldState = {
                 audioIsReady: false,
+                podcastIsPlaying: false,
                 trelo: 'biu'
             }
 
         expect(audio(oldState, action)).to.deep.equal({
             audioIsReady: true,
+            podcastIsPlaying: true,
             trelo: 'biu'
         })
     })

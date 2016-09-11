@@ -4,9 +4,7 @@ import {fetchPodcasts} from './podcasts-actions'
 import nock from 'nock'
 import { expect } from 'chai' // You can use any testing library
 import fakePodcastXMLResponse from '../../data/fakePodcastXML'
-
-import xml2json from '../../helpers/xml2json'
-
+ 
 import {parseString as convertXml2Json} from 'xml2js'
 
 import bandNewsPodcasts from  '../../helpers/bandNewsPodcasts'

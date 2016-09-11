@@ -14,7 +14,7 @@ module.exports = {
     publicPath: '/static/'
   },
   plugins: [
-    /**
+    /*
      * This is where the magic happens! You need this to enable Hot Module Replacement!
      */
     new webpack.HotModuleReplacementPlugin(),

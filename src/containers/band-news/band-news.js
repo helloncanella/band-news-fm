@@ -79,11 +79,11 @@ function mapStateToProps(state) {
         icon: <PersonIcon />,
         name: 'podcasts',
       },
-      // {
-      //   component: <AudioControl />,
-      //   icon: <AudioIcon />,
-      //   name: 'audio'
-      // }
+      {
+        component: <AudioControl />,
+        icon: <AudioIcon />,
+        name: 'audio'
+      }
     ],
     titleAppBar: state.tabs
   };
